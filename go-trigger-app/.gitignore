@@ -5,6 +5,8 @@
 *.dylib
 *.test
 *.out
+*.env
+
 
 webapp/node_modules
 webapp/build
