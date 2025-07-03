@@ -1,0 +1,43 @@
+<nav class="top-navbar">
+  <div class="navbar-content">
+    <a routerLink="/" class="navbar-brand">Deeply<span style="color: var(--textLight);">Profound</span></a>
+    
+    <div class="navbar-links">
+      <div class="navbar-dropdown">
+        <button class="navbar-dropdown-toggle" (click)="toggleDropdown($event)">
+          <div class="hamburger-menu" [class.open]="isDropdownOpen">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </button>
+        
+        <div class="navbar-dropdown-menu" [class.show]="isDropdownOpen">
+          <div class="dropdown-menu-content">
+            <!-- Show these when logged out -->
+            <ng-container *ngIf="!authService.isLoggedIn()">
+              <a routerLink="/login" 
+                 class="dropdown-menu-item" 
+                 [class.active]="isActive('/login')">Login</a>
+              <a routerLink="/register" 
+                 class="dropdown-menu-item" 
+                 [class.active]="isActive('/register')">Register</a>
+            </ng-container>
+            
+            <!-- Show these when logged in -->
+            <ng-container *ngIf="authService.isLoggedIn()">
+              <a routerLink="/dashboard" 
+                 class="dropdown-menu-item" 
+                 [class.active]="isActive('/dashboard')">Dashboard</a>
+              <a routerLink="/resources" 
+                 class="dropdown-menu-item" 
+                 [class.active]="isActive('/resources')">Resources</a>
+              <a (click)="logout()" 
+                 class="dropdown-menu-item">Logout</a>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

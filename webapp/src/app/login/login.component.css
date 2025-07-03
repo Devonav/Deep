@@ -1,0 +1,197 @@
+/*
+  Login Component CSS - Full Implementation
+  This file provides all necessary styles for a full-screen animated background
+  and a stylized, responsive login form.
+*/
+
+/* :host is a special Angular selector that targets the component's own element (<app-login>).
+  We use it to create the full-screen background effect reliably.
+*/
+:host {
+  /* We make the host a positioning container */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto; /* Adds scroll on small screens if needed */
+  
+  /* --- BACKGROUND GIF ADJUSTMENT --- */
+  background-image: url('../../assets/Login.gif');
+  background-repeat: no-repeat;
+  /* Make the GIF much larger to ensure we have room to reposition it. */
+  background-size: 190% auto;
+  /* Position the image 40% from the left and 50% from the top. */
+  /* This shifts the image to the right, revealing more of the left side. */
+  background-position: 70% 50%;
+}
+
+/* This is the main form container. It provides the frosted glass effect
+  and is now positioned absolutely within the :host container.
+*/
+form {
+  /* Center it perfectly on all screen sizes */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 100%;
+  max-width: 360px;
+  padding: 2.5rem 2rem;
+  margin: 1rem;
+  background-color: rgba(44, 51, 56, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  z-index: 2;
+}
+
+/* The 'Sign In' heading */
+.form h1 {
+  font-size: 2.25rem;
+  font-weight: 300;
+  color: #ffffff;
+  margin-bottom: 2.5rem;
+  letter-spacing: 1px;
+}
+
+/* Wrapper for each input field */
+.form .control {
+  margin-bottom: 1.5rem;
+}
+
+/* --- Block Cube Effect Styles (Refined) --- */
+
+.block-cube {
+  position: relative;
+}
+
+.block-cube input {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  background-color: #3b4148;
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 0.05em;
+  font-size: 16px;
+  position: relative;
+  z-index: 2;
+  outline: none;
+}
+
+.block-cube .bg-top,
+.block-cube .bg-right,
+.block-cube .bg {
+  position: absolute;
+  transition: all 0.2s ease-in-out;
+  background: #ea4c88; /* Primary pink/magenta color */
+}
+
+.block-cube .bg-top {
+  height: 10px;
+  bottom: 100%;
+  left: 5px;
+  right: -5px;
+  transform: skew(-45deg, 0);
+}
+
+.block-cube .bg-right {
+  top: -5px;
+  bottom: 5px;
+  width: 10px;
+  left: 100%;
+  transform: skew(0, -45deg);
+}
+
+.block-cube .bg-inner {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: #3b4148; /* Matches the input background */
+}
+
+.block-cube .text {
+  position: relative;
+  z-index: 2;
+}
+
+/* Focus and Hover States for the Cube Effect */
+.block-cube input:focus ~ .bg-top,
+.block-cube input:focus ~ .bg-right,
+.block-cube.block-cube-hover:hover .bg-top,
+.block-cube.block-cube-hover:hover .bg-right {
+  background: #d44179; /* Darker shade on hover/focus */
+}
+
+/* Button Styles */
+.btn {
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  background: transparent; /* The background is handled by the cube effect */
+  color: #fff;
+  letter-spacing: 0.1em;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+/* Link to Registration Page */
+.register-link {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #a9a9a9;
+}
+
+.register-link a {
+  color: #ea4c88;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
+}
+
+.register-link a:hover {
+  color: #d44179;
+  text-decoration: underline;
+}
+
+/* Error Message Display */
+.error-message {
+  margin-top: 1.5rem;
+  color: #ff5252;
+  background-color: rgba(255, 82, 82, 0.1);
+  border: 1px solid rgba(255, 82, 82, 0.2);
+  border-radius: 4px;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .form {
+    max-width: 100vw;
+    max-height: 100vh;
+    padding: 0rem 0rem;
+    /* Keep it centered even on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .form {
+    padding: 0rem 0rem;
+    max-width: 100vw;
+    max-height: 100vh;
+
+  }
+
+  .form h1 {
+    font-size: 1.5rem;
+  }
+}
