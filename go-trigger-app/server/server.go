@@ -1,20 +1,28 @@
+// server.go
 package main
 
 import (
-	"go-trigger-app/db"
-	"go-trigger-app/web"
 	"database/sql"
-	_ "github.com/lib/pq"
+	"go-trigger-app/db"      // Your existing db package
+	"go-trigger-app/storage" // <-- Import the new storage package
+	"go-trigger-app/web"
 	"log"
 	"os"
+
+	_ "github.com/lib/pq"
 )
 
 func main() {
-	d, err := sql.Open("postgres", dataSource())
+	// Use the DATABASE_URL environment variable directly
+	d, err := sql.Open("postgres", os.Getenv("DATABASE_URL"))
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer d.Close()
+
+	// Initialize Wasabi Session
+	storage.InitS3() // <-- Add this line
+
 	// CORS is enabled only in prod profile
 	cors := os.Getenv("profile") == "prod"
 	app := web.NewApp(db.NewDB(d), cors)
@@ -22,13 +30,4 @@ func main() {
 	log.Println("Error", err)
 }
 
-func dataSource() string {
-	host := "localhost"
-	pass := "pass"
-	if os.Getenv("profile") == "prod" {
-		host = "db"
-		pass = os.Getenv("db_pass")
-	}
-	return "postgresql://" + host + ":5432/goxygen" +
-		"?user=goxygen&sslmode=disable&password=" + pass
-}
+// You can now DELETE the entire dataSource() function.

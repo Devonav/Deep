@@ -1,1 +1,17 @@
-<p>project-card works!</p>
+<div class="project-card">
+  <img [src]="project.imageUrl" alt="Image for {{ project.name }}">
+  <h3>{{ project.name }}</h3>
+  <p>{{ project.description }}</p>
+  
+  <div class="project-links">
+    <a *ngIf="project.githubUrl" [href]="project.githubUrl" target="_blank" rel="noopener noreferrer">
+      <img src="assets/github.svg" alt="GitHub">
+    </a>
+    <a *ngIf="project.websiteUrl" [href]="project.websiteUrl" target="_blank" rel="noopener noreferrer">
+      <img src="assets/globe.svg" alt="Website">
+    </a>
+    <a *ngIf="project.npm" [href]="project.npm" target="_blank" rel="noopener noreferrer">
+      <img src="assets/npm.svg" alt="NPM">
+    </a>
+  </div>
+</div>

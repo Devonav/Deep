@@ -1,0 +1,71 @@
+<div class="login-page">
+<app-navbar></app-navbar>
+
+  <form class="form" autocomplete="off" (ngSubmit)="onSubmit()">
+    <div class="control">
+      <h1>Sign In</h1>
+    </div>
+
+    <div class="control block-cube block-input">
+      <input
+        type="text"
+        name="username"
+        [(ngModel)]="username"
+        placeholder="Username"
+        aria-label="Username"
+        required
+      />
+      <div class="bg-top">
+        <div class="bg-inner"></div>
+      </div>
+      <div class="bg-right">
+        <div class="bg-inner"></div>
+      </div>
+      <div class="bg">
+        <div class="bg-inner"></div>
+      </div>
+    </div>
+
+    <div class="control block-cube block-input">
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+        placeholder="Password"
+        aria-label="Password"
+        required
+      />
+      <div class="bg-top">
+        <div class="bg-inner"></div>
+      </div>
+      <div class="bg-right">
+        <div class="bg-inner"></div>
+      </div>
+      <div class="bg">
+        <div class="bg-inner"></div>
+      </div>
+    </div>
+
+    <button class="btn block-cube block-cube-hover" type="submit" aria-label="Log In">
+      <div class="bg-top">
+        <div class="bg-inner"></div>
+      </div>
+      <div class="bg-right">
+        <div class="bg-inner"></div>
+      </div>
+      <div class="bg">
+        <div class="bg-inner"></div>
+      </div>
+      <div class="text">Log In</div>
+    </button>
+
+    <p class="register-link">
+      Don't have an account?
+      <a routerLink="/register">Register here</a>
+    </p>
+
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+  </form>
+</div>
