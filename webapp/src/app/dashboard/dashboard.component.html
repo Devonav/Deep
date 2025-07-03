@@ -1,0 +1,16 @@
+<div class="dashboard">
+  <app-navbar></app-navbar>
+  <app-head></app-head>
+  
+  <main>
+    <app-about></app-about>
+    <app-user-breach-icons></app-user-breach-icons>
+    
+    <section class="projects">
+      <h2>My Projects</h2>
+      <div class="project-grid">
+        <app-project-card *ngFor="let project of projects" [project]="project"></app-project-card>
+      </div>
+    </section>
+  </main>
+</div>
